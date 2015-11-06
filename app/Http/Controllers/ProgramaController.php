@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\ProgramaRequest;
 use App\Http\Controllers\Controller;
 use App\Programa;
 
@@ -41,7 +42,7 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Programa $programa)
+    public function store(ProgramaRequest $request, Programa $programa)
     {
         $programa->create($request->all());
 
@@ -79,6 +80,12 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if (is_null($id)) {
+
+            return;
+        }
+
         $programa = $this->programa->findOrNew($id);
         
         if (!is_null($programa)) {
@@ -95,6 +102,11 @@ class ProgramaController extends Controller
      */
     public function destroy($id)
     {
+        if (is_null($id)) {
+
+            return null;
+        }
+
         $programa = $this->show($id);
 
         if (!is_null($programa)) {
@@ -102,6 +114,6 @@ class ProgramaController extends Controller
             return $programa->delete();
         }
 
-        return false;
+        return null;
     }
 }
