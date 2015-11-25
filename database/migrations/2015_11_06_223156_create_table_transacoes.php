@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePerfil extends Migration
+class CreateTableTransacoes extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateTablePerfil extends Migration
      */
     public function up()
     {
-        Schema::create('perfil', function($table) {
-            $table->increments('id');
-            $table->string('nome', 150);
+        Schema::create('transacoes', function($table) {
+            $table->bigIncrements('id');
             $table->string('descricao', 200);
+            $table->string('url', 150);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateTablePerfil extends Migration
      */
     public function down()
     {
-        Schema::drop('perfil');
+        Schema::drop('transacoes');
     }
 }

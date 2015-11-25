@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableAreaAcesso extends Migration
+class CreateTableProgramas extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTableAreaAcesso extends Migration
      */
     public function up()
     {
-        Schema::create('area_acesso', function($table) {
-            $table->increments('id');
-            $table->string('descricao', 200);
-            $table->string('url', 150);
+        Schema::create('programas', function($table) {
+            $table->bigIncrements('id');
+            $table->string('nome', 150);
+            $table->string('sigla', 10);
+            $table->text('descricao');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTableAreaAcesso extends Migration
      */
     public function down()
     {
-        Schema::drop('area_acesso');
+        Schema::drop('programas');
     }
 }

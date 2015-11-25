@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrateTableCurso extends Migration
+class CreateTableSemestres extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CrateTableCurso extends Migration
      */
     public function up()
     {
-        Schema::create('curso', function($table) {
-            $table->increments('id');
-            $table->string('nome', 150);
-            $table->string('descricao', 200);
-            $table->timestamps();
+        Schema::create('semestres', function($table) {
+            $table->bigIncrements('id');
+            $table->enum('indice_semestre', ['1', '2']);
         });
     }
 
@@ -27,6 +25,6 @@ class CrateTableCurso extends Migration
      */
     public function down()
     {
-        Schema::drop('curso');
+        Schema::drop('semestres');
     }
 }

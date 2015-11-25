@@ -4,7 +4,7 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Curso extends Model
+class Transacao extends Model
 {
-    protected $fillable = ['nome', 'descricao'];
+    protected $fillable = ['descricao', 'url'];
 }

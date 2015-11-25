@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\ProgramaRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Model\Programa;
+use App\Http\Requests\PerfilRequest;
+use App\Perfil;
 
-class ProgramaController extends Controller
+class PerfilController extends Controller
 {
-    protected $programa = null;
+    protected $perfil = null;
 
-    public function __construct(Programa $programa) {
-        
-        $this->programa = $programa;
+    public function __construct(Perfil $perfil) {
+
+        $this->perfil = $perfil;
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class ProgramaController extends Controller
      */
     public function index()
     {
-        return $this->programa->all();
+        return $this->perfil->all();
     }
 
     /**
@@ -42,11 +42,11 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProgramaRequest $request, Programa $programa)
+    public function store(PerfilRequest $request, Perfil $perfil)
     {
-        $programa->create($request->all());
+        $perfil->create($request->all());
 
-        return $programa;
+        return $perfil;
     }
 
     /**
@@ -57,7 +57,7 @@ class ProgramaController extends Controller
      */
     public function show($id)
     {
-        return $this->programa->findOrNew($id);
+        return $this->perfil->findOrNew($id);
     }
 
     /**
@@ -80,17 +80,16 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if (is_null($id)) {
 
             return;
         }
 
-        $programa = $this->programa->findOrNew($id);
+        $perfil = $this->show($id);
         
-        if (!is_null($programa)) {
+        if (!is_null($perfil)) {
 
-            $programa->update($request->all());
+            $perfil->update($request->all());
         }
     }
 
@@ -107,11 +106,11 @@ class ProgramaController extends Controller
             return null;
         }
 
-        $programa = $this->show($id);
+        $perfil = $this->show($id);
 
-        if (!is_null($programa)) {
+        if (!is_null($perfil)) {
 
-            return $programa->delete();
+            return $perfil->delete();
         }
 
         return null;

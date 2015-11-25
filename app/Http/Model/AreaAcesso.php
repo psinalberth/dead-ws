@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
 class AreaAcesso extends Model
 {
-    protected $fillable = ['descricao', 'url'];
+    protected $fillable = ['perfil_id', 'transacao_id'];
 }
