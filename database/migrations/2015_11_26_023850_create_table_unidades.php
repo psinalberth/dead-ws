@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableSemestres extends Migration
+class CreateTableUnidades extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTableSemestres extends Migration
      */
     public function up()
     {
-        Schema::create('semestres', function($table) {
+        Schema::create('unidades', function($table) {
             $table->bigIncrements('id');
-            $table->enum('indice_semestre', ['1', '2']);
-            $table->integer('ano');
+            $table->date('data_inicio');
+            $table->date('data_fim');
+            $table->bigInteger('plano_ensino_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTableSemestres extends Migration
      */
     public function down()
     {
-        Schema::drop('semestres');
+        Schema::drop('unidades');
     }
 }

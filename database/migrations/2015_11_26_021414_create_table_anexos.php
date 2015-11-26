@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableSemestres extends Migration
+class CreateTableAnexos extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTableSemestres extends Migration
      */
     public function up()
     {
-        Schema::create('semestres', function($table) {
+        Schema::create('anexos', function($table) {
             $table->bigIncrements('id');
-            $table->enum('indice_semestre', ['1', '2']);
-            $table->integer('ano');
+            $table->string('url', 120);
+            $table->bigInteger('tipo_anexo_id');
+            $table->bigInteger('conteudo_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTableSemestres extends Migration
      */
     public function down()
     {
-        Schema::drop('semestres');
+        Schema::drop('anexos');
     }
 }
