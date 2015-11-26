@@ -28,6 +28,6 @@ class CreateTableHistoricos extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('historicos');
     }
 }
