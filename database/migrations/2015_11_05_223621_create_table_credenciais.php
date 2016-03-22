@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableConteudos extends Migration
+class CreateTableCredenciais extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateTableConteudos extends Migration
      */
     public function up()
     {
-        Schema::create('conteudos', function($table) {
+        Schema::create('credenciais', function($table) {
             $table->bigIncrements('id');
-            $table->string('titulo', 140);
-            $table->text('descricao');
-            $table->bigInteger('unidade_id');
-            $table->timestamp('data_envio');
-            $table->timestamps();
+            $table->string('email', 80)->unique();
+            $table->string('login', 20)->unique();
+            $table->string('password', 100);
+            $table->timestamps();        
         });
     }
 
@@ -29,6 +28,6 @@ class CreateTableConteudos extends Migration
      */
     public function down()
     {
-        Schema::drop('conteudos');
+        Schema::drop('credenciais');
     }
 }

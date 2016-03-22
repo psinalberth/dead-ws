@@ -57,7 +57,7 @@ class ProgramaController extends Controller
      */
     public function show($id)
     {
-        return $this->programa->findOrNew($id);
+        return $this->programa->findOrFail($id);
     }
 
     /**
@@ -86,7 +86,7 @@ class ProgramaController extends Controller
             return;
         }
 
-        $programa = $this->programa->findOrNew($id);
+        $programa = $this->programa->findOrFail($id);
         
         if (!is_null($programa)) {
 
@@ -104,16 +104,18 @@ class ProgramaController extends Controller
     {
         if (is_null($id)) {
 
-            return null;
+            return -1;
         }
 
         $programa = $this->show($id);
 
         if (!is_null($programa)) {
 
-            return $programa->delete();
+            $programa->delete();
+
+            return $id;
         }
 
-        return null;
+        return -1;
     }
 }

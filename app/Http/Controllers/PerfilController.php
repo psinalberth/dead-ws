@@ -2,117 +2,117 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\Perfil;
+
 use App\Http\Requests\PerfilRequest;
-use App\Perfil;
+use Illuminate\Http\Request;
 
-class PerfilController extends Controller
-{
-    protected $perfil = null;
+class PerfilController extends Controller {
+	
+	protected $perfil = null;
 
-    public function __construct(Perfil $perfil) {
+	public function __construct(Perfil $perfil) {
 
-        $this->perfil = $perfil;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return $this->perfil->all();
-    }
+		$this->perfil = $perfil;
+	}
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		
+		return $this->perfil->all();
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create() {
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PerfilRequest $request, Perfil $perfil)
-    {
-        $perfil->create($request->all());
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(PerfilRequest $request, Perfil $perfil) {
+		
+		$perfil->create($request->all());
 
-        return $perfil;
-    }
+		return $perfil;
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return $this->perfil->findOrNew($id);
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id) {
+		
+		return $this->perfil->findOrFail($id);
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        if (is_null($id)) {
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $id) {
+		
+		if (is_null($id)) {
 
-            return;
-        }
+			return;
+		}
 
-        $perfil = $this->show($id);
-        
-        if (!is_null($perfil)) {
+		$perfil = $this->show($id);
 
-            $perfil->update($request->all());
-        }
-    }
+		if (!is_null($perfil)) {
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if (is_null($id)) {
+			$perfil->update($request->all());
+		}
+	}
 
-            return null;
-        }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		
+		if (is_null($id)) {
 
-        $perfil = $this->show($id);
+			return -1;
+		}
 
-        if (!is_null($perfil)) {
+		$perfil = $this->show($id);
 
-            return $perfil->delete();
-        }
+		if (!is_null($perfil)) {
 
-        return null;
-    }
+			$perfil->delete();
+
+			return $id;
+		}
+
+		return -1;
+	}
 }

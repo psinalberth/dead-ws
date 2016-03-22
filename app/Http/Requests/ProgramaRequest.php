@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use JWTAuth;
 
 class ProgramaRequest extends Request
 {
@@ -13,7 +14,12 @@ class ProgramaRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        if ($user = JWTAuth::parseToken()) {
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

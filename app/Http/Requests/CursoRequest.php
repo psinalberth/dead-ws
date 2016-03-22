@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use App\Http\Requests\Request;
+use JWTAuth;
 
 class CursoRequest extends Request
 {
@@ -13,7 +15,12 @@ class CursoRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        if (! $user = JWTAuth::parseToken()) {
+
+            return false;
+        }
+
+        return true;
     }
 
     /**

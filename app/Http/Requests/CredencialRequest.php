@@ -13,7 +13,7 @@ class CredencialRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class CredencialRequest extends Request
         return [
             'email' => 'required',
             'login' => 'required',
-            'senha' => 'required'
+            'password' => 'required'
         ];
     }
 }
